@@ -3,7 +3,26 @@ const { EggCore, EggLoader} = eggcore;
 
 class AppWorkerLoader extends EggLoader {
   loadAll() {
-    this.loadRouter();
+    this.loadPlugin();
+    super.loadConfig();
+    
+    // app > plugin > core
+    this.loadApplicationExtend();
+    this.loadRequestExtend();
+    this.loadResponseExtend();
+    this.loadContextExtend();
+    this.loadHelperExtend();
+
+    // app > plugin
+    this.loadCustomApp();
+    // app > plugin
+    this.loadService();
+    // app > plugin > core
+    this.loadMiddleware();
+    // app
+    this.loadController();
+    // app
+    this.loadRouter(); // Dependent on controllers
   }
 }
 

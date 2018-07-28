@@ -1,5 +1,5 @@
 'use strict';
-const Application = require('./../lib/application');
+const Application = require('./lib/application');
 
 // 初始化Egg.js应用
 const app = new Application({

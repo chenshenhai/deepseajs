@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:portal": "node ./core/portal/index.js"
+    "precommit":"npm run lint",
+    "dev:portal": "./node_modules/.bin/nodemon ./core/portal/index.js",
+    "lint": "./node_modules/.bin/eslint --fix --ext .js ./core"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +22,6 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.14.3",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.18.3"
   }
 }
