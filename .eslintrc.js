@@ -1,3 +1,3 @@
-moudle.exports = {
+module.exports = {
   "extends": "eslint-config-koa"
 }

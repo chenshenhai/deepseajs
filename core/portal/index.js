@@ -4,7 +4,7 @@ const Application = require('./lib/application');
 // 初始化Egg.js应用
 const app = new Application({
   baseDir: __dirname,
-  type: 'application',
+  type: 'application'
 });
 
 // 应用启动
@@ -22,4 +22,3 @@ app.ready(err => {
     console.log('server started at 7001');
   });
 });
-

@@ -1,11 +1,11 @@
-const eggcore = require('egg-core'); 
-const { EggCore, EggLoader} = eggcore; 
+const eggcore = require('egg-core');
+const { EggCore, EggLoader } = eggcore;
 
 class AppWorkerLoader extends EggLoader {
   loadAll() {
     this.loadPlugin();
     super.loadConfig();
-    
+
     // app > plugin > core
     this.loadApplicationExtend();
     this.loadRequestExtend();
@@ -27,7 +27,6 @@ class AppWorkerLoader extends EggLoader {
 }
 
 class EggApplication extends EggCore {
-
   constructor(options) {
     super(options);
     this.on('error', err => {

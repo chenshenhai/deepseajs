@@ -7,5 +7,5 @@ module.exports = {
 
   async hello(ctx) {
     ctx.body = 'This is hello page!';
-  },
+  }
 };
