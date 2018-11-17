@@ -4,15 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "precommit":"npm run lint",
-    "dev:admin": "./node_modules/.bin/nodemon ./core/admin/index.js",
-    "dev:portal": "./node_modules/.bin/nodemon ./core/portal/index.js",
+    "precommit": "npm run lint",
+    "dev:dashboard": "./node_modules/.bin/nodemon ./sys/sys-dashboard/index.js",
+    "dev:portal": "./node_modules/.bin/nodemon ./sys/sys-portal/index.js",
     "lint": "./node_modules/.bin/eslint --fix --ext .js ./core"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "egg-core": "^4.9.1"
+    "egg-core": "^4.11.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

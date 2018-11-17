@@ -5,6 +5,6 @@ module.exports = app => {
   const controller = app.controller;
 
   router.get('/', controller.page.index);
-  router.get('/hello', controller.page.hello);
+  router.get('/page/:pageId', controller.page.render);
   router.resources('posts', '/api/posts', controller.api);
 };
