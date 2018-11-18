@@ -1,4 +1,5 @@
 'use strict';
+
 const path = require('path');
 const ThemeCore = require('./../theme-core/index');
 

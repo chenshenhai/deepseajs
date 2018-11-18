@@ -1,28 +1,30 @@
 const fs = require('fs');
 const path = require('path');
-const OPTS = Symbol('OPTS');
+const page = require('./lib/page');
+const walk = require('./lib/walk');
 
-const page = {
-  render(dirPath) {
-    let pageHTML = 'deepseajs: 404 Not Found!'
-    const pageTplPath = path.join(dirPath, 'index.html');
-    if(fs.existsSync(pageTplPath)) {
-      pageHTML = fs.readFileSync(pageTplPath, 'binary');
-    }
-    return pageHTML;
-  }
-}
+const OPTIONS = Symbol('options');
+const PAGE_STORAGE = Symbol('pageStorage');
+const LOAD_PAGES = Symbol('loadPages');
 
 class ThemeCore {
   constructor(opts = {}) {
-    this[OPTS] = opts;
+    this[OPTIONS] = opts;
+    this[PAGE_STORAGE] = {};
+    const {dirName, } = opts;
+    const pagePathMap = page.loadPageMap(path.join(dirName, 'page'));
+    console.log('pagePathMap ==', pagePathMap);
   }
 
   pageRender(pageId) {
-    const opts = this[OPTS] || {};
+    const opts = this[OPTIONS] || {};
     const {dirName, } = opts;
     const pageDirName = path.join(dirName, 'page', pageId)
     return page.render(pageDirName);
+  }
+
+  [LOAD_PAGES]() {
+
   }
 }
 
