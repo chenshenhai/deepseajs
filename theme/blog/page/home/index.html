@@ -1,12 +1,28 @@
 <html>
   <head>
-    <title></title>
+    <title>{{title}}</title>
   </head>
   <body>
-    <h1></h1>
-    <script>
-      console.log('Hello Home Page!')
-    </script>
+    <h1>{{text}}</h1>
+    
+    <h4>directive:if</h4>
+    <directive: if="isShowDataList === true">
+      <p>show data</p>
+    </directive:>
+    <hr/>
+
+    <h4>directive:for-array</h4>
+    <directive: for-array="list" for-array-index="idx" for-array-item="item" >
+      <p>{{idx}}:{{item}}</p>
+    </directive:>
+    <hr/>
+
+    <h4>directive:for-json</h4>
+    <directive: for-json="datajson" for-json-key="key" for-json-value="val" >
+      <p>{{key}}:{{val}}</p>
+    </directive:>
+    <hr/>
+
   </body>
 
 </html>

@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const vm = require('vm');
 const ThemePage = require('./theme-page');
+const template = require('./template');
 
 function initPageApiCode(apiCode) {
   let resultCode = apiCode.trim();;
@@ -28,7 +29,7 @@ const page = {
       const pageApiCode = fs.readFileSync(apiPath, 'binary');
       const pageTplCode = fs.readFileSync(tplPath, 'binary');
       const apiData = runPageApiCode(pageApiCode);
-      console.log(apiData);
+      pageHTML = template.compile(pageTplCode, apiData);
     }
     return pageHTML;
   },
