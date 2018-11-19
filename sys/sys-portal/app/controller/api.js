@@ -1,43 +1,43 @@
 'use strict';
 
 module.exports = {
-  async index(ctx) {
+  async index (ctx) {
     ctx.body = {
       action: 'index'
     };
   },
 
-  async new(ctx) {
+  async new (ctx) {
     ctx.body = {
       action: 'new'
     };
   },
 
-  async show(ctx) {
+  async show (ctx) {
     ctx.body = {
       action: 'show'
     };
   },
 
-  async edit(ctx) {
+  async edit (ctx) {
     ctx.body = {
       action: 'edit'
     };
   },
 
-  async create(ctx) {
+  async create (ctx) {
     ctx.body = {
       action: 'create'
     };
   },
 
-  async update(ctx) {
+  async update (ctx) {
     ctx.body = {
       action: 'update'
     };
   },
 
-  async destroy(ctx) {
+  async destroy (ctx) {
     ctx.body = {
       action: 'destroy'
     };

@@ -2,7 +2,7 @@ const eggcore = require('egg-core');
 const { EggCore, EggLoader } = eggcore;
 
 class AppWorkerLoader extends EggLoader {
-  loadAll() {
+  loadAll () {
     this.loadPlugin();
     super.loadConfig();
 
@@ -27,7 +27,7 @@ class AppWorkerLoader extends EggLoader {
 }
 
 class EggApplication extends EggCore {
-  constructor(options) {
+  constructor (options) {
     super(options);
     this.on('error', err => {
       console.error(err);
@@ -36,10 +36,10 @@ class EggApplication extends EggCore {
     this.loader.loadAll();
   }
 
-  get [Symbol.for('egg#eggPath')]() {
+  get [Symbol.for('egg#eggPath')] () {
     return __dirname;
   }
-  get [Symbol.for('egg#loader')]() {
+  get [Symbol.for('egg#loader')] () {
     return AppWorkerLoader;
   }
 }

@@ -6,26 +6,26 @@ const vm = require('vm');
 const ThemePage = require('./theme-page');
 const template = require('./template');
 
-function initPageApiCode(apiCode) {
-  let resultCode = apiCode.trim();;
+function initPageApiCode (apiCode) {
+  let resultCode = apiCode.trim(); ;
   resultCode = `var result = ${apiCode}`;
   return resultCode;
 }
 
-function runPageApiCode(apiCode){
+function runPageApiCode (apiCode) {
   const code = initPageApiCode(apiCode);
   let result = {};
-  let sandbox = {ThemePage, result}
+  let sandbox = { ThemePage, result };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox);
   return sandbox.result;
 }
 
 const page = {
-  render(pagePathObj) {
-    const {tplPath, apiPath, } = pagePathObj;
+  render (pagePathObj) {
+    const { tplPath, apiPath } = pagePathObj;
     let pageHTML = 'deepseajs: 404 Not Found!';
-    if(fs.existsSync(tplPath) && fs.existsSync(apiPath)) {
+    if (fs.existsSync(tplPath) && fs.existsSync(apiPath)) {
       const pageApiCode = fs.readFileSync(apiPath, 'binary');
       const pageTplCode = fs.readFileSync(tplPath, 'binary');
       const apiData = runPageApiCode(pageApiCode);
@@ -34,7 +34,7 @@ const page = {
     return pageHTML;
   },
 
-  loadPageMap(pageDirName) {
+  loadPageMap (pageDirName) {
     let dirs = fs.readdirSync(pageDirName);
     let result = {};
     for (let i = 0, len = dirs.length; i < len; i++) {
@@ -46,17 +46,17 @@ const page = {
           const tplPath = path.join(childDirFullPath, 'index.html');
           const apiPath = path.join(childDirFullPath, 'index.js');
           if (fs.statSync(tplPath).isFile() === true && fs.statSync(apiPath).isFile() === true) {
-            result[dirName] =  {
+            result[dirName] = {
               dirPath: childDirFullPath,
               tplPath: tplPath,
-              apiPath: apiPath,
-            }
+              apiPath: apiPath
+            };
           }
         }
       }
     }
     return result;
   }
-}
+};
 
 module.exports = page;

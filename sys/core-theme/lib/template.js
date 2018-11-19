@@ -1,29 +1,29 @@
-const vm = require('vm');
+'use strict';
 
 const funcParamKey = '__DATA__';
 
-function compileToFunctionStr(tpl) {
+function compileToFunctionStr (tpl) {
   let tplCode = tpl;
-  const regTpl = /\<directive\:([^\>]+)?\>|\<\/directive\:\>|\{\{([^\}\}]+)?\}\}/ig;
-  const regDirectStart = /\<directive\:([^\>]+)?\>|\<\/directive\:\>/i;
-  const regDirectEnd = /\<\/directive\:\>/i;
-  const regDirectIf = /if\=\"([^\"]+)?\"/i;
-  const regDirectForArray = /for-array=\"([^\"]+)?\"/i;
-  const regDirectForArrayIndex = /for-array-index=\"([^\"]+)?\"/i;
-  const regDirectForArrayItem = /for-array-item=\"([^\"]+)?\"/i;
-  const regDirectForJSON = /for-json=\"([^\"]+)?\"/i;
-  const regDirectForJSONKey = /for-json-key=\"([^\"]+)?\"/i;
-  const regDirectForJSONVal = /for-json-value=\"([^\"]+)?\"/i;
-  const regData = /\{\{([^\}\}]+)?\}\}/i;
+  const regTpl = /<directive:([^>]+)?>|<\/directive:>|{{([^}}]+)?}}/ig;
+  // const regDirectStart = /<directive:([^>]+)?>|<\/directive:>/i;
+  const regDirectEnd = /<\/directive:>/i;
+  const regDirectIf = /if="([^"]+)?"/i;
+  const regDirectForArray = /for-array="([^"]+)?"/i;
+  const regDirectForArrayIndex = /for-array-index="([^"]+)?"/i;
+  const regDirectForArrayItem = /for-array-item="([^"]+)?"/i;
+  const regDirectForJSON = /for-json="([^"]+)?"/i;
+  const regDirectForJSONKey = /for-json-key="([^"]+)?"/i;
+  const regDirectForJSONVal = /for-json-value="([^"]+)?"/i;
+  const regData = /{{([^}}]+)?}}/i;
   let directiveStock = [];
   let funcCodeStr = '';
-  let match;
+  let match = true;
   let codeIndex = 0;
   funcCodeStr += '\n let _row=[];\n';
 
-  const addFuncCode = function(params) {
-    const {currentExec, currentMatch, restCode} = params;
-    
+  const addFuncCode = function (params) {
+    const { currentExec, restCode } = params;
+
     if (regData.test(currentExec) === true) {
       const currentDirective = directiveStock[directiveStock.length - 1];
       if (['for-array', 'for-json'].indexOf(currentDirective) >= 0) {
@@ -56,33 +56,35 @@ function compileToFunctionStr(tpl) {
       funcCodeStr += `\n }`;
       directiveStock.pop();
     } else {
-      funcCodeStr += `\n _row.push(\`${restCode}\`); `
+      funcCodeStr += `\n _row.push(\`${restCode}\`); `;
+    }
+  };
+
+  while (match) {
+    match = regTpl.exec(tplCode);
+    if (match) {
+      const restCode = tplCode.slice(codeIndex, match.index);
+      const currentExec = match[0];
+      const currentMatch = match[1];
+      addFuncCode({ restCode });
+      addFuncCode({ currentExec, currentMatch, restCode });
+      codeIndex = match.index + match[0].length;
     }
   }
-
-
-  while( match = regTpl.exec(tplCode)) {
-    const restCode = tplCode.slice(codeIndex, match.index);
-    const currentExec = match[0];
-    const currentMatch = match[1];
-    addFuncCode({restCode});
-    addFuncCode({currentExec, currentMatch, restCode});
-    codeIndex = match.index + match[0].length;
-  }
-  addFuncCode({restCode: tplCode.substr(codeIndex, tplCode.length)});
+  addFuncCode({ restCode: tplCode.substr(codeIndex, tplCode.length) });
 
   funcCodeStr += '\n return _row.join("");';
-  funcCodeStr = funcCodeStr.replace(/[\r\t\n]/g, '')
+  funcCodeStr = funcCodeStr.replace(/[\r\t\n]/g, '');
   return funcCodeStr;
 }
 
 const template = {
-  compile(tpl, data) {
+  compile (tpl, data) {
     const funcStr = compileToFunctionStr(tpl);
     const func = new Function(funcParamKey, funcStr.replace(/[\r\t\n]/g, ''));
     const html = func(data);
     return html;
   }
-}
+};
 
 module.exports = template;

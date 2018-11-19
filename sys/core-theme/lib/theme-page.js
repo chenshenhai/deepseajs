@@ -1,5 +1,7 @@
-const ThemePage = function(obj) {
+'use strict';
+
+const ThemePage = function (obj) {
   return obj;
-}
+};
 
 module.exports = ThemePage;
