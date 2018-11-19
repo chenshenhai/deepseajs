@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const ThemeCore = require('./../theme-core/index');
+const ThemeCore = require('./../../../core-theme/index');
 
 const themeDirName = path.join(__dirname, '..', '..', '..', '..', 'theme', 'blog');
 const themeCore = new ThemeCore({
