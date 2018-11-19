@@ -29,7 +29,7 @@ const page = {
       const pageApiCode = fs.readFileSync(apiPath, 'binary');
       const pageTplCode = fs.readFileSync(tplPath, 'binary');
       const apiData = runPageApiCode(pageApiCode);
-      pageHTML = template.compile(pageTplCode, apiData);
+      pageHTML = template.compile(pageTplCode, apiData.data);
     }
     return pageHTML;
   },

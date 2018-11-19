@@ -3,7 +3,7 @@ ThemePage({
     title: 'hello page',
     text: 'this is hello page!',
     isShowDataList: true,
-    dataList: [
+    datalist: [
       '001', '002', '003', '004',
     ],
     datajson: {
