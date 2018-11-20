@@ -2,13 +2,13 @@
 
 const path = require('path');
 const Koa = require('koa');
-const CoreTheme = require('./../core-theme/index');
+const ThemeCore = require('./../theme-core/index');
 const Router = require('./lib/router');
 
 const router = new Router();
 const app = new Koa();
 const themeDirName = path.join(__dirname, '..', '..', 'theme', 'blog');
-const theme = new CoreTheme({
+const theme = new ThemeCore({
   dirName: themeDirName
 });
 
