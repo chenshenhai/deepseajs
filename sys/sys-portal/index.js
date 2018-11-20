@@ -1,24 +1,23 @@
 'use strict';
-const Application = require('./lib/application');
 
-// 初始化Egg.js应用
-const app = new Application({
-  baseDir: __dirname,
-  type: 'application'
+const path = require('path');
+const Koa = require('koa');
+const CoreTheme = require('./../core-theme/index');
+const Router = require('./lib/router');
+
+const router = new Router();
+const app = new Koa();
+const themeDirName = path.join(__dirname, '..', '..', 'theme', 'blog');
+const theme = new CoreTheme({
+  dirName: themeDirName
 });
 
-// 应用启动
-app.ready(err => {
-  if (err) {
-    console.log(err);
-    process.exit(1);
-  }
-  const server = require('http').createServer(app.callback());
-  server.once('error', err => {
-    console.log('[app_worker] server got error: %s, code: %s', err.message, err.code);
-    process.exit(1);
-  });
-  server.listen(7001, () => {
-    console.log('server started at 7001');
-  });
+router.get('/page/home', function (ctx) {
+  ctx.body = theme.pageRender('home');
+});
+
+app.use(router.routes());
+
+app.listen(3000, () => {
+  console.log('the server is starting at port 3000');
 });
