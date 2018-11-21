@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const Koa = require('koa');
 const KoaRouter = require('koa-router');
 const koaStatic = require('koa-static');
@@ -19,6 +20,10 @@ class ThemeServer extends Koa {
 
     const { baseDir, themeName } = options;
     const themeDirName = path.join(baseDir, 'theme', themeName);
+    const stats = fs.statSync(themeDirName);
+    if (!stats && stats.isDirectory()) {
+      throw new Error(`${themeDirName} is not an existing directory`);
+    }
     const themeStaticDir = path.join(themeDirName, 'static', 'dist');
     const theme = new ThemeCore({
       dirName: themeDirName
@@ -26,7 +31,7 @@ class ThemeServer extends Koa {
     this.use(koaStatic(themeStaticDir));
     this.router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
-      ctx.body = theme.pageRender(pageId);
+      ctx.body = theme.renderPage(pageId);
     });
   }
 

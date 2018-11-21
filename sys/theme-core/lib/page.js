@@ -29,7 +29,18 @@ const page = {
       const pageApiCode = fs.readFileSync(apiPath, 'binary');
       const pageTplCode = fs.readFileSync(tplPath, 'binary');
       const apiData = runPageApiCode(pageApiCode);
-      pageHTML = template.compile(pageTplCode, apiData.data);
+
+      let pageData = apiData.data;
+      if (typeof apiData.data === 'function') {
+        // TODO
+        const app = {
+          func () {
+            console.log('=== app.func ===');
+          }
+        };
+        pageData = apiData.data(app);
+      }
+      pageHTML = template.compile(pageTplCode, pageData);
     }
     return pageHTML;
   },
