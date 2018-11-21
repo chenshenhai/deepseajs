@@ -7,12 +7,14 @@
     "precommit": "npm run lint",
     "dev:dashboard": "./node_modules/.bin/nodemon ./sys/theme-dashboard/index.js",
     "dev:portal": "./node_modules/.bin/nodemon ./sys/theme-portal/index.js",
+    "dev": "./node_modules/.bin/nodemon ./index.js",
     "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "koa": "^2.6.2"
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

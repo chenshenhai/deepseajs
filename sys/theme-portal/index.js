@@ -1,9 +1,9 @@
 'use strict';
-
+// const http = require('http');
 const path = require('path');
 const Koa = require('koa');
 const ThemeCore = require('./../theme-core/index');
-const Router = require('./lib/router');
+const Router = require('koa-router');
 
 const router = new Router();
 const app = new Koa();
@@ -18,6 +18,4 @@ router.get('/page/home', function (ctx) {
 
 app.use(router.routes());
 
-app.listen(3000, () => {
-  console.log('the server is starting at port 3000');
-});
+module.exports = app;
