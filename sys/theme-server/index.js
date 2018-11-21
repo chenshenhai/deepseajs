@@ -1,7 +1,8 @@
 const path = require('path');
 const Koa = require('koa');
 const KoaRouter = require('koa-router');
-const ThemeCore = require('./../theme-core/index');
+const koaStatic = require('koa-static');
+const ThemeCore = require('../theme-core/index');
 
 const ROUTER = Symbol('router');
 class Router extends KoaRouter {
@@ -18,9 +19,11 @@ class ThemeServer extends Koa {
 
     const { baseDir, themeName } = options;
     const themeDirName = path.join(baseDir, 'theme', themeName);
+    const themeStaticDir = path.join(themeDirName, 'static', 'dist');
     const theme = new ThemeCore({
       dirName: themeDirName
     });
+    this.use(koaStatic(themeStaticDir));
     this.router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.pageRender(pageId);
