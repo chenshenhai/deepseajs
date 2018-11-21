@@ -1,6 +1,16 @@
 const http = require('http');
-const portal = require('./sys/theme-portal');
+const ThemeServer = require('./sys/theme-server/index');
 
-http.createServer(portal.callback()).listen(3000, () => {
-  console.log('the server is starting at port 3000');
+const app = new ThemeServer({
+  baseDir: __dirname,
+  themeName: 'blog'
+});
+
+const server = http.createServer(app.callback());
+server.once('error', err => {
+  console.log(' server got error: %s, code: %s', err.message, err.code);
+  process.exit(1);
+});
+server.listen(3001, () => {
+  console.log('server started at 3001');
 });
