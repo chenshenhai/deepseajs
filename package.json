@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "precommit": "npm run lint",
-    "dev:dashboard": "./node_modules/.bin/nodemon ./sys/theme-dashboard/index.js",
-    "dev:portal": "./node_modules/.bin/nodemon ./sys/theme-portal/index.js",
     "dev": "./node_modules/.bin/nodemon ./index.js",
     "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys"
   },
