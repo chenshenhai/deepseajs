@@ -1,8 +1,9 @@
 ThemePage({
   data(app) {
-    console.log('app ===== ', app);
+    const data = app.getData();
+    console.log('xxxx = ', data)
     return {
-      title: 'nonon page',
+      title: data.title,
       text: 'this is hello page!',
       isShowDataList: true,
       datalist: [

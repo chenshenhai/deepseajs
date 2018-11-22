@@ -15,7 +15,8 @@ function initPageApiCode (apiCode) {
 function runPageApiCode (apiCode) {
   const code = initPageApiCode(apiCode);
   let result = {};
-  let sandbox = { ThemePage, result };
+  const console = global.console;
+  let sandbox = { ThemePage, result, console };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox);
   return sandbox.result;
@@ -34,11 +35,17 @@ const page = {
       if (typeof apiData.data === 'function') {
         // TODO
         const app = {
-          func () {
-            console.log('=== app.func ===');
+          getData () {
+            return {
+              title: 'func title'
+            };
           }
         };
-        pageData = apiData.data(app);
+        try {
+          pageData = apiData.data(app);
+        } catch (err) {
+          console.log(err);
+        }
       }
       pageHTML = template.compile(pageTplCode, pageData);
     }
