@@ -18,7 +18,7 @@ class ThemeServer extends Koa {
     options.baseDir = options.baseDir || process.cwd();
     super(options);
 
-    const { baseDir, themeName } = options;
+    const { baseDir, themeName, dataHub } = options;
     const themeDirName = path.join(baseDir, 'theme', themeName);
     const stats = fs.statSync(themeDirName);
     if (!stats && stats.isDirectory()) {
@@ -26,7 +26,8 @@ class ThemeServer extends Koa {
     }
     const themeStaticDir = path.join(themeDirName, 'static', 'dist');
     const theme = new ThemeCore({
-      dirName: themeDirName
+      baseDir: themeDirName,
+      dataHub: dataHub
     });
     this.use(koaStatic(themeStaticDir));
     this.router.get('/page/:pageId', async (ctx) => {

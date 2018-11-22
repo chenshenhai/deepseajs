@@ -3,7 +3,16 @@ const ThemeServer = require('./sys/theme-server/index');
 
 const app = new ThemeServer({
   baseDir: __dirname,
-  themeName: 'blog'
+  themeName: 'blog',
+  dataHub: {
+    getName: () => 'theme server',
+    getInfo: () => {
+      return {
+        title: 'theme',
+        datalist: ['001', '002']
+      };
+    }
+  }
 });
 
 const server = http.createServer(app.callback());

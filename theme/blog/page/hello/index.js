@@ -1,14 +1,11 @@
 ThemePage({
   data(app) {
-    const data = app.getData();
-    console.log('xxxx = ', data)
+    const info = app.getInfo();
     return {
-      title: data.title,
-      text: 'this is hello page!',
+      title: app.getName(),
+      text: app.getName(),
       isShowDataList: true,
-      datalist: [
-        '001', '002', '003', '004'
-      ],
+      datalist: info.datalist,
       datajson: {
         'key1': 'val1',
         'key2': 'val2'

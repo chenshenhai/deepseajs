@@ -23,7 +23,7 @@ function runPageApiCode (apiCode) {
 }
 
 const page = {
-  render (pagePathObj) {
+  render (pagePathObj, dataHub) {
     const { tplPath, apiPath } = pagePathObj;
     let pageHTML = 'deepseajs: 404 Not Found!';
     if (fs.existsSync(tplPath) && fs.existsSync(apiPath)) {
@@ -33,16 +33,8 @@ const page = {
 
       let pageData = apiData.data;
       if (typeof apiData.data === 'function') {
-        // TODO
-        const app = {
-          getData () {
-            return {
-              title: 'func title'
-            };
-          }
-        };
         try {
-          pageData = apiData.data(app);
+          pageData = apiData.data(dataHub);
         } catch (err) {
           console.log(err);
         }
@@ -56,7 +48,7 @@ const page = {
     let dirs = fs.readdirSync(pageDirName);
     let result = {};
     for (let i = 0, len = dirs.length; i < len; i++) {
-      const dirName = dirs[i];
+      const baseDir = dirs[i];
       const childDirFullPath = path.join(pageDirName, dirs[i]);
       if (typeof childDirFullPath === 'string') {
         const stats = fs.statSync(childDirFullPath);
@@ -64,7 +56,7 @@ const page = {
           const tplPath = path.join(childDirFullPath, 'index.html');
           const apiPath = path.join(childDirFullPath, 'index.js');
           if (fs.statSync(tplPath).isFile() === true && fs.statSync(apiPath).isFile() === true) {
-            result[dirName] = {
+            result[baseDir] = {
               dirPath: childDirFullPath,
               tplPath: tplPath,
               apiPath: apiPath
