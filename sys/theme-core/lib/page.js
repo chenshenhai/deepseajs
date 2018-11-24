@@ -23,6 +23,7 @@ function runPageApiCode (apiCode) {
 }
 
 const page = {
+
   render (pagePathObj, dataHub) {
     const { tplPath, apiPath } = pagePathObj;
     let pageHTML = 'deepseajs: 404 Not Found!';

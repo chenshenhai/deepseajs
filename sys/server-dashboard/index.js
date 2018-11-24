@@ -2,13 +2,13 @@ const path = require('path');
 const ThemeServer = require('./../theme-server/index');
 
 const server = new ThemeServer({
-  baseDir: path.join(__dirname, 'theme'),
+  baseDir: path.join(__dirname),
   themeName: 'dashboard',
   dataHub: {
     getName: () => 'theme server',
     getInfo: () => {
       return {
-        title: 'theme',
+        title: 'dashboard',
         datalist: ['001', '002']
       };
     }

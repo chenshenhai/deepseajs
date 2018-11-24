@@ -18,8 +18,13 @@ class ThemeCore {
   renderPage (pageId) {
     const { dataHub } = this[OPTIONS];
     const pagePathMap = this[PAGE_PATH_MAP];
+    // console.log('pagePathMap = ', pagePathMap);
+    let resultHTML = `[ERROR:404] not found page/${pageId} in current theme`;
     const pagePathObj = pagePathMap[pageId];
-    return page.render(pagePathObj, dataHub);
+    if (pagePathObj) {
+      resultHTML = page.render(pagePathObj, dataHub);
+    }
+    return resultHTML;
   }
 }
 

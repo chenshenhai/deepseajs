@@ -30,6 +30,10 @@ class ThemeServer extends Koa {
       dataHub: dataHub
     });
     this.use(koaStatic(themeStaticDir));
+    this.router.get('/page/:pageId.html', async (ctx) => {
+      const pageId = ctx.params.pageId;
+      ctx.body = theme.renderPage(pageId);
+    });
     this.router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.renderPage(pageId);
