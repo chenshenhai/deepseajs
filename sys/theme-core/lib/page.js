@@ -24,7 +24,7 @@ function runPageApiCode (apiCode) {
 
 const page = {
 
-  render (pagePathObj, dataHub) {
+  render (pagePathObj, pageDataHub) {
     const { tplPath, apiPath } = pagePathObj;
     let pageHTML = 'deepseajs: 404 Not Found!';
     if (fs.existsSync(tplPath) && fs.existsSync(apiPath)) {
@@ -35,7 +35,7 @@ const page = {
       let pageData = apiData.data;
       if (typeof apiData.data === 'function') {
         try {
-          pageData = apiData.data(dataHub);
+          pageData = apiData.data(pageDataHub);
         } catch (err) {
           console.log(err);
         }

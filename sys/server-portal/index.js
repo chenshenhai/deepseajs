@@ -4,7 +4,7 @@ const ThemeServer = require('./../theme-server/index');
 const server = new ThemeServer({
   baseDir: path.join(__dirname, '..', '..'),
   themeName: 'portal',
-  dataHub: {
+  pageDataHub: {
     getName: () => 'theme server',
     getInfo: () => {
       return {

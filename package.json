@@ -6,6 +6,7 @@
   "scripts": {
     "precommit": "npm run lint",
     "dev": "./node_modules/.bin/nodemon ./index.js",
+    "dev:debug": "node --inspect ./index.js",
     "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys"
   },
   "author": "chenshenhai",
