@@ -8,8 +8,8 @@
     "dev": "./node_modules/.bin/nodemon ./index.js",
     "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "chenshenhai",
+  "license": "MIT",
   "dependencies": {
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",

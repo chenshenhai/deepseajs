@@ -24,7 +24,7 @@ class ThemeServer extends Koa {
     if (!stats && stats.isDirectory()) {
       throw new Error(`${themeDirName} is not an existing directory`);
     }
-    const themeStaticDir = path.join(themeDirName, 'static', 'dist');
+    const themeStaticDir = path.join(themeDirName, 'static');
     const theme = new ThemeCore({
       baseDir: themeDirName,
       dataHub: dataHub
