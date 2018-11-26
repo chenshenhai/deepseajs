@@ -1,13 +1,18 @@
-const path = require('path');
 const ThemeServer = require('./../theme-server/index');
 const apiHub = require('./lib/api-hub');
 const pageDataHub = require('./lib/page-data-hub');
 
-const server = new ThemeServer({
-  baseDir: path.join(__dirname, '..', '..'),
-  themeName: 'init',
-  pageDataHub,
-  apiHub
-});
+class ServerInit extends ThemeServer {
+  constructor (opts = {}) {
+    const { baseDir, themeName } = opts || {};
+    const options = {
+      baseDir,
+      themeName,
+      pageDataHub,
+      apiHub
+    };
+    super(options);
+  }
+}
 
-module.exports = server;
+module.exports = ServerInit;
