@@ -16,9 +16,17 @@ function getFileStore (opts) {
 const controller = {
   async init (ctx, next, opts = {}) {
     const { baseDir } = opts;
-    const fullPath = path.join(baseDir, '_file_storage_', 'config', 'config.json');
     const fileStore = getFileStore(opts);
-    ctx.body = await fileStore.createFile(fullPath, '{"text":"hello world!"}');
+    const configPath = path.join(baseDir, '_file_storage_', 'config', 'config.json');
+    const dataUserPath = path.join(baseDir, '_file_storage_', 'data', 'user', 'a0000001.json');
+    const dataPostsPath = path.join(baseDir, '_file_storage_', 'data', 'posts', 'a', 'a0000001.json');
+    await fileStore.createFile(configPath, '{}');
+    await fileStore.createFile(dataUserPath, '{}');
+    await fileStore.createFile(dataPostsPath, '{}');
+    ctx.body = {
+      success: true,
+      message: 'ok'
+    };
   }
 };
 
