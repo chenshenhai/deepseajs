@@ -13,8 +13,9 @@ function mkdirSync (dirname) {
 };
 
 function writeFile (filePath, fileContent) {
+  mkdirSync(path.dirname(filePath));
   const ws = fs.createWriteStream(filePath);
-  const result = {
+  let result = {
     success: false,
     message: null
   };

@@ -2,15 +2,19 @@ const types = require('./util/types');
 
 const posts = require('./api/posts');
 const user = require('./api/user');
+const storage = require('./api/storage');
+
+const page = require('./page');
 
 const apiMethodTypeList = ['get', 'post', 'delete', 'put', 'patch'];
+const OPTIONS = Symbol('options');
 
-let apiMap = {
-  posts,
-  user
-};
-
-function buildApiHub () {
+function buildApiHub (opts) {
+  let apiMap = {
+    posts,
+    user,
+    storage: storage(opts)
+  };
   let apiHub = {};
   if (types.isJSON(apiMap) === true) {
     let apiKeyList = Object.keys(apiMap);
@@ -34,4 +38,12 @@ function buildApiHub () {
   return apiHub;
 }
 
-module.exports = buildApiHub();
+class Hub {
+  constructor (opts = {}) {
+    this[OPTIONS] = opts;
+    this.apiHub = buildApiHub(opts);
+    this.pageDataHub = page;
+  }
+}
+
+module.exports = Hub;
