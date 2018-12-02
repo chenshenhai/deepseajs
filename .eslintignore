@@ -1,1 +1,5 @@
-/theme/**/page/
+
+## theme ignore
+./theme/**/page/
+./theme/**/static/
+./theme/**/node_modules/

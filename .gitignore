@@ -11,3 +11,6 @@ run/
 *.sw*
 *.un~
 _file_storage_/
+
+## theme 
+theme/*/node_modules/
