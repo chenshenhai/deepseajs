@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const babelConfig = require('./babel.config');
 
@@ -20,11 +21,6 @@ module.exports = {
     path: distResolve(''),
     filename: 'js/[name].js'
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
-    })
-  ],
   module: {
     rules: [
       {
@@ -54,5 +50,21 @@ module.exports = {
         ]
       }
     ]
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css'
+    })
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   }
 };
