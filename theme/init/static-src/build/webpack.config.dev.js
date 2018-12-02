@@ -11,6 +11,7 @@ module.exports = merge(config, {
   plugins: [
     new webpack.SourceMapDevToolPlugin({
       filename: 'js/[name].js.map'
+      // append: '\n//# sourceMappingURL=js/[name].js.map'
     })
   ]
 });

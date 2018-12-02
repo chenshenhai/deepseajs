@@ -6,6 +6,7 @@ import './../css/index.less';
 
 const { SubMenu, } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
+const container = document.getElementById('PageApp');
 
 ReactDOM.render(
   <Layout>
@@ -65,4 +66,4 @@ ReactDOM.render(
       Ant Design ©2018 Created by Ant UED
     </Footer>
   </Layout>,
-  document.getElementById('PageApp'));
+  container);
