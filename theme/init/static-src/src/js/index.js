@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Steps, Button, message } from 'antd';
-
+import { Steps, Button, message, Layout, Menu } from 'antd';
 import './../css/index.less';
 
+const { Header, Content, Footer } = Layout;
 const container = document.getElementById('PageApp');
 const Step = Steps.Step;
 
 const steps = [{
-  title: 'First',
-  content: 'First-content'
-}, {
-  title: 'Second',
+  title: 'Storage type',
   content: 'Second-content'
 }, {
-  title: 'Last',
+  title: 'Super admin',
+  content: 'First-content'
+}, {
+  title: 'Server config',
+  content: 'Fourth-content'
+}, {
+  title: 'Start all server',
   content: 'Last-content'
 }];
 
@@ -38,14 +41,13 @@ class App extends React.Component {
 
   render () {
     const { current } = this.state;
-    console.log('111111111111111111111');
     return (
-      <div>
-        <Steps current={current}>
+      <div className="page-app-container">
+        <Steps current={current} >
           {steps.map(item => <Step key={item.title} title={item.title} />)}
         </Steps>
-        <div className="steps-content">{steps[current].content}</div>
-        <div className="steps-action">
+        <div className="app-steps-content">{steps[current].content}</div>
+        <div className="app-steps-action">
           {
             current < steps.length - 1 &&
             <Button type="primary" onClick={() => this.next()}>Next</Button>
@@ -68,4 +70,26 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, container);
+ReactDOM.render(
+  <Layout className="layout">
+    <Header>
+      <div className="logo" />
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['2']}
+        style={{ lineHeight: '64px' }}
+      >
+        <Menu.Item key="1">nav 1</Menu.Item>
+        <Menu.Item key="2">nav 2</Menu.Item>
+        <Menu.Item key="3">nav 3</Menu.Item>
+      </Menu>
+    </Header>
+    <Content style={{ padding: '0 50px' }}>
+      <App />
+    </Content>
+    <Footer style={{ textAlign: 'center' }}>
+      toojs ©2018 Created by chenshenhai
+    </Footer>
+  </Layout>,
+  container);
