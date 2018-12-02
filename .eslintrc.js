@@ -286,7 +286,7 @@ module.exports = {
       }
     ],
     "no-unused-vars": [
-      "error",
+      "warn",
       {
         "vars": "all",
         "args": "none",

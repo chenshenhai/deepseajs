@@ -1,5 +1,6 @@
 
 ## theme ignore
-/theme/*/page/
-/theme/*/static/
-/theme/*/node_modules/
+#/theme/*/page/
+#/theme/*/static/
+#/theme/*/static—src/
+#/theme/*/node_modules/

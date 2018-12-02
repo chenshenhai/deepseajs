@@ -7,7 +7,8 @@
     "precommit": "npm run lint",
     "dev": "./node_modules/.bin/nodemon ./index.js",
     "dev:debug": "node --inspect ./index.js",
-    "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys"
+    "lint": "./node_modules/.bin/eslint --fix --ext .js ./sys",
+    "lint:theme_init": "./node_modules/.bin/eslint --fix --ext .js  ./theme/init/static-src/src"
   },
   "author": "chenshenhai",
   "license": "MIT",
