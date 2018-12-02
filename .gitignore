@@ -14,3 +14,4 @@ _file_storage_/
 
 ## theme 
 theme/*/node_modules/
+theme/*/static/
