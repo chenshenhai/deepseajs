@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Steps, Button, message, Layout, Menu } from 'antd';
 
+import ModStepProcess from './module/step-process.jsx';
+import ModIndex from './module/index.jsx';
+import ModInfo from './module/info.jsx';
+
 import './../css/index.less';
 
 const { Header, Content, Footer } = Layout;
@@ -50,9 +54,9 @@ const AppRouter = () => (
           </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
-          <Route path='/' exact component={Language} />
-          <Route path='/step' component={StepProcess} />
-          <Route path='/info' component={Info} />
+          <Route path='/' exact component={ModIndex} />
+          <Route path='/step' component={ModStepProcess} />
+          <Route path='/info' component={ModInfo} />
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           toojs ©2018 Created by chenshenhai
