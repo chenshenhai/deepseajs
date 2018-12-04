@@ -237,6 +237,7 @@ var AppRouter = function AppRouter() {
   }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a, {
     theme: "dark",
     mode: "horizontal",
+    selectable: false,
     style: {
       height: '40px',
       lineHeight: '40px'

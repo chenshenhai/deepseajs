@@ -35,6 +35,7 @@ const AppRouter = () => (
           <Menu
             theme="dark"
             mode="horizontal"
+            selectable={false}
             style={{ height: '40px', lineHeight: '40px' }}
           >
             <Menu.Item key="1">
