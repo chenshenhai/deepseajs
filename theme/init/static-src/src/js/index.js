@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { Steps, Button, message, Layout, Menu } from 'antd';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { Layout, Menu } from 'antd';
+
+import rootRoducers from './reducer/index';
 
 import ModStepProcess from './module/step-process.jsx';
 import ModIndex from './module/index.jsx';
@@ -66,8 +71,15 @@ const AppRouter = () => (
   </Router>
 );
 
+const store = createStore(rootRoducers);
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+
 const container = document.getElementById('PageApp');
 
 ReactDOM.render(
-  <AppRouter />,
+  <Root store={store} />,
   container);
