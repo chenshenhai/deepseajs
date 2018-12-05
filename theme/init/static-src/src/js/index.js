@@ -10,7 +10,7 @@ import rootRoducers from './reducer/index';
 
 import ModStepProcess from './module/step-process.jsx';
 import ModIndex from './module/index.jsx';
-import ModInfo from './module/info.jsx';
+import ModInfo from './module/async-info.jsx';
 
 import './../css/index.less';
 

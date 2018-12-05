@@ -26,7 +26,8 @@ const babelConfig = {
       'import',
       { 'libraryName': 'antd-mobile', 'libraryDirectory': 'lib' },
       'antd-mobile'
-    ]
+    ],
+    '@babel/plugin-syntax-dynamic-import'
   ]
 };
 
