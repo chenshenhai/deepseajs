@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import { Layout, Menu } from 'antd';
 
@@ -35,48 +35,63 @@ function AppLink ({ label, to, activeOnlyWhenExact }) {
   );
 }
 
-const AppRouter = () => (
-  <Router>
-    <div>
-      <Layout className="layout">
-        <Header style={{ height: '40px' }}>
-          <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            selectable={false}
-            style={{ height: '40px', lineHeight: '40px' }}
-          >
-            <Menu.Item key="1">
-              <AppLink activeOnlyWhenExact={true} to='/' label="Language" />
-            </Menu.Item>
-            <Menu.Item key="2">
-              <AppLink to='/step' label="StepProcess" />
-            </Menu.Item>
-            <Menu.Item key="3">
-              <AppLink to='/info' label="Info" />
-            </Menu.Item>
-          </Menu>
-        </Header>
-        <Content style={{ padding: '0 50px' }}>
-          <Route path='/' exact component={ModIndex} />
-          <Route path='/step' component={ModStepProcess} />
-          <Route path='/info' component={ModInfo} />
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          toojs ©2018 Created by chenshenhai
-        </Footer>
-      </Layout>
-    </div>
-  </Router>
-);
+class AppRouter extends React.Component {
+  render () {
+    console.log('this.props = ', this.props);
+    const { todos = {} } = this.props;
+    const showCode = JSON.stringify(todos);
+    return (
+      <Router>
+        <div>
+          <Layout className="layout">
+            <Header style={{ height: '40px' }}>
+              <div className="logo" />
+              <Menu
+                theme="dark"
+                mode="horizontal"
+                selectable={false}
+                style={{ height: '40px', lineHeight: '40px' }}
+              >
+                <Menu.Item key="1">
+                  <AppLink activeOnlyWhenExact={true} to='/' label="Language" />
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <AppLink to='/step' label="StepProcess" />
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <AppLink to='/info' label="Info" />
+                </Menu.Item>
+              </Menu>
+            </Header>
+            <Content style={{ padding: '0 50px' }}>
+              <code>{showCode}</code>
+              <Route path='/' exact component={ModIndex} />
+              <Route path='/step' component={ModStepProcess} />
+              <Route path='/info' component={ModInfo} />
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>
+              toojs ©2018 Created by chenshenhai
+            </Footer>
+          </Layout>
+        </div>
+      </Router>
+    );
+  }
+};
+
+const mapStateToProps = (state) => {
+  return { todos: state.todos };
+};
+const App = connect(mapStateToProps)(AppRouter);
 
 const store = createStore(rootRoducers);
-const Root = ({ store }) => (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-);
+const Root = ({ store }) => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
 
 const container = document.getElementById('PageApp');
 

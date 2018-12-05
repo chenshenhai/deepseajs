@@ -196,6 +196,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -240,67 +259,97 @@ function AppLink(_ref) {
   });
 }
 
-var AppRouter = function AppRouter() {
-  return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_layout__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    className: "layout"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Header, {
-    style: {
-      height: '40px'
+var AppRouter =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(AppRouter, _React$Component);
+
+  function AppRouter() {
+    _classCallCheck(this, AppRouter);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AppRouter).apply(this, arguments));
+  }
+
+  _createClass(AppRouter, [{
+    key: "render",
+    value: function render() {
+      console.log('this.props = ', this.props);
+      var _this$props$todos = this.props.todos,
+          todos = _this$props$todos === void 0 ? {} : _this$props$todos;
+      var showCode = JSON.stringify(todos);
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_layout__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        className: "layout"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Header, {
+        style: {
+          height: '40px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
+        className: "logo"
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a, {
+        theme: "dark",
+        mode: "horizontal",
+        selectable: false,
+        style: {
+          height: '40px',
+          lineHeight: '40px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
+        key: "1"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
+        activeOnlyWhenExact: true,
+        to: "/",
+        label: "Language"
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
+        key: "2"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
+        to: "/step",
+        label: "StepProcess"
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
+        key: "3"
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
+        to: "/info",
+        label: "Info"
+      })))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Content, {
+        style: {
+          padding: '0 50px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("code", null, showCode), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+        path: "/",
+        exact: true,
+        component: _module_index_jsx__WEBPACK_IMPORTED_MODULE_10__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+        path: "/step",
+        component: _module_step_process_jsx__WEBPACK_IMPORTED_MODULE_9__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+        path: "/info",
+        component: _module_info_jsx__WEBPACK_IMPORTED_MODULE_11__["default"]
+      })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Footer, {
+        style: {
+          textAlign: 'center'
+        }
+      }, "toojs \xA92018 Created by chenshenhai"))));
     }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("div", {
-    className: "logo"
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a, {
-    theme: "dark",
-    mode: "horizontal",
-    selectable: false,
-    style: {
-      height: '40px',
-      lineHeight: '40px'
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
-    key: "1"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
-    activeOnlyWhenExact: true,
-    to: "/",
-    label: "Language"
-  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
-    key: "2"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
-    to: "/step",
-    label: "StepProcess"
-  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(antd_lib_menu__WEBPACK_IMPORTED_MODULE_0___default.a.Item, {
-    key: "3"
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppLink, {
-    to: "/info",
-    label: "Info"
-  })))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Content, {
-    style: {
-      padding: '0 50px'
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-    path: "/",
-    exact: true,
-    component: _module_index_jsx__WEBPACK_IMPORTED_MODULE_10__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-    path: "/step",
-    component: _module_step_process_jsx__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
-    path: "/info",
-    component: _module_info_jsx__WEBPACK_IMPORTED_MODULE_11__["default"]
-  })), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Footer, {
-    style: {
-      textAlign: 'center'
-    }
-  }, "toojs \xA92018 Created by chenshenhai"))));
+  }]);
+
+  return AppRouter;
+}(react__WEBPACK_IMPORTED_MODULE_2___default.a.Component);
+
+;
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    todos: state.todos
+  };
 };
 
+var App = Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps)(AppRouter);
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_7__["createStore"])(_reducer_index__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
 var Root = function Root(_ref3) {
   var store = _ref3.store;
   return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_6__["Provider"], {
     store: store
-  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(AppRouter, null));
+  }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(App, null));
 };
 
 var container = document.getElementById('PageApp');
@@ -325,6 +374,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd_lib_select__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(antd_lib_select__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/_react@16.6.3@react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/_react-redux@5.1.1@react-redux/es/index.js");
 
 
 
@@ -347,6 +397,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 var Option = antd_lib_select__WEBPACK_IMPORTED_MODULE_1___default.a.Option;
@@ -384,7 +435,11 @@ function (_React$Component) {
   _createClass(Module, [{
     key: "handleChange",
     value: function handleChange(value) {
-      console.log("selected ".concat(value));
+      var dispatch = this.props.dispatch;
+      dispatch({
+        type: 'ADD_TODO',
+        text: value
+      });
     }
   }, {
     key: "render",
@@ -409,7 +464,7 @@ function (_React$Component) {
         style: {
           width: 240
         },
-        onChange: this.handleChange
+        onChange: this.handleChange.bind(this)
       }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Option, {
         value: "en"
       }, "English"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(Option, {
@@ -421,7 +476,13 @@ function (_React$Component) {
   return Module;
 }(react__WEBPACK_IMPORTED_MODULE_2___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Module);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    todos: state.todos
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps)(Module));
 
 /***/ }),
 
@@ -644,17 +705,13 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!*****************************************************!*\
   !*** ./static-src/src/js/reducer/mixins/actions.js ***!
   \*****************************************************/
-/*! exports provided: ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER */
+/*! exports provided: ADD_TODO */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TODO", function() { return ADD_TODO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TOGGLE_TODO", function() { return TOGGLE_TODO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VISIBILITY_FILTER", function() { return SET_VISIBILITY_FILTER; });
 var ADD_TODO = 'ADD_TODO';
-var TOGGLE_TODO = 'TOGGLE_TODO';
-var SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 /***/ }),
 
@@ -685,20 +742,8 @@ function todos() {
   switch (action.type) {
     case _actions__WEBPACK_IMPORTED_MODULE_0__["ADD_TODO"]:
       return _toConsumableArray(state).concat([{
-        text: action.text,
-        completed: false
+        text: action.text
       }]);
-
-    case _actions__WEBPACK_IMPORTED_MODULE_0__["TOGGLE_TODO"]:
-      return state.map(function (todo, index) {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          });
-        }
-
-        return todo;
-      });
 
     default:
       return state;

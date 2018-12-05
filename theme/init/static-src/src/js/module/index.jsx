@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Select } from 'antd';
+import { connect } from 'react-redux';
 
 const Option = Select.Option;
 const FormItem = Form.Item;
@@ -17,7 +18,11 @@ const formItemLayout = {
 
 class Module extends React.Component {
   handleChange (value) {
-    console.log(`selected ${value}`);
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'ADD_TODO',
+      text: value
+    });
   }
   render () {
     return (
@@ -27,7 +32,7 @@ class Module extends React.Component {
             <FormItem
               {...formItemLayout}
               label={<span style={{ lineHeight: '30px' }}>请选择语言</span>} >
-              <Select defaultValue="zh-cn" style={{ width: 240 }} onChange={this.handleChange}>
+              <Select defaultValue="zh-cn" style={{ width: 240 }} onChange={this.handleChange.bind(this)}>
                 <Option value="en">English</Option>
                 <Option value="zh-cn">中文简体</Option>
               </Select>
@@ -39,4 +44,7 @@ class Module extends React.Component {
   }
 }
 
-export default Module;
+const mapStateToProps = (state) => {
+  return { todos: state.todos };
+};
+export default connect(mapStateToProps)(Module);

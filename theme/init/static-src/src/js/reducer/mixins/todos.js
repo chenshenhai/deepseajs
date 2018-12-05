@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from './actions';
+import { ADD_TODO } from './actions';
 
 function todos (state = [], action) {
   switch (action.type) {
@@ -6,19 +6,9 @@ function todos (state = [], action) {
       return [
         ...state,
         {
-          text: action.text,
-          completed: false
+          text: action.text
         }
       ];
-    case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed
-          });
-        }
-        return todo;
-      });
     default:
       return state;
   }
