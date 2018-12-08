@@ -82,6 +82,10 @@ class ThemeServer extends Koa {
             ctx.body = await theme.renderPage(pageId);
           }
         }
+        if (main === urlPath) {
+          ctx.redirect('/');
+          ctx.status = 302;
+        }
         await next();
       });
     }
