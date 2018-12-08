@@ -1,28 +1,44 @@
 <html>
   <head>
-    <title>{{title}}</title>
+    <title>about</title>
+    <style>
+    @keyframes loading-action {
+      0% {
+        transform: rotate(0deg);
+      }
+      50% {
+        transform: rotate(180deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .page-main {
+      width: 400px;
+      margin: 200px auto;
+    }
+    .page-loading-container {
+      text-align: center;
+    }
+    .page-loading-container > .loading-content {
+      border-radius: 100%;
+      margin: 2px;
+      border: 2px solid #000000;
+      border-bottom-color: transparent;
+      height: 26px;
+      width: 26px;
+      background: transparent !important;
+      display: inline-block;
+      animation: loading-action 0.75s 0s linear infinite;
+    }
+  </style>
   </head>
   <body>
-    <div id="PageApp">
-      <h1>{{text}}</h1>
-  
-      <h4>directive:if</h4>
-      <directive: if="isShowDataList">
-        <p>show data</p>
-      </directive:>
-      <hr/>
-  
-      <h4>directive:for-array</h4>
-      <directive: for-array="datalist" for-array-index="idx" for-array-item="item" >
-        <p>{{idx}}:{{item}}</p>
-      </directive:>
-      <hr/>
-  
-      <h4>directive:for-json</h4>
-      <directive: for-json="datajson" for-json-key="key" for-json-value="val" >
-        <p>{{key}}:{{val}}</p>
-      </directive:>
-      <hr/>    
+    <div class="page-main">
+      <div class="page-loading-container">
+        <div class="loading-content"></div>
+      </div>
     </div>
   </body>
 
