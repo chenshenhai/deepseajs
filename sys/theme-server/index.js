@@ -65,26 +65,24 @@ class ThemeServer extends Koa {
     const themeConfig = loadFile.json(themeConfigPath) || {};
 
     this.use(koaStatic(themeStaticDir));
-    router.get('/page/:pageId.html', async (ctx) => {
-      const pageId = ctx.params.pageId;
-      ctx.body = theme.renderPage(pageId);
-    });
     router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.renderPage(pageId);
     });
 
-    // console.log(this.router.routes().router.stack[0]);
     // // init SPA router config
     if (types.isJSON(themeConfig) === true && types.isJSON(themeConfig.spa) === true) {
       const spaConfig = themeConfig.spa;
-      const { main = '' } = spaConfig;
+      const { main = '', exclude } = spaConfig;
       this.use(async function (ctx, next) {
         const urlPath = ctx.path || '';
         if (/^\/(js|css|api|pic|static)\//.test(urlPath) !== true) {
-          const pageId = main.replace(/^\/page\//ig, '');
-          ctx.body = await theme.renderPage(pageId);
+          if (!(types.isArray(exclude) === true && exclude.indexOf(urlPath) >= 0)) {
+            const pageId = main.replace(/^\/page\//ig, '');
+            ctx.body = await theme.renderPage(pageId);
+          }
         }
+        await next();
       });
     }
   }
