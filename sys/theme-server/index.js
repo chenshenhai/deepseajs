@@ -5,6 +5,7 @@ const KoaRouter = require('koa-router');
 const koaStatic = require('koa-static');
 const ThemeCore = require('../theme-core/index');
 const types = require('./lib/types');
+const loadFile = require('./util/load-file');
 
 const OPTIONS = Symbol('options');
 const ROUTER = Symbol('router');
@@ -46,27 +47,46 @@ class ThemeServer extends Koa {
 
   [INIT_PAGE_ROUTER] () {
     const options = this[OPTIONS];
+    const router = this.router;
     const { baseDir, themeName, pageDataHub } = options;
     const themeDirName = path.join(baseDir, 'theme', themeName);
     const stats = fs.statSync(themeDirName);
+
     if (!stats && stats.isDirectory()) {
       throw new Error(`${themeDirName} is not an existing directory`);
     }
 
+    const themeConfigPath = path.join(themeDirName, 'theme.config.json');
     const themeStaticDir = path.join(themeDirName, 'static');
     const theme = new ThemeCore({
       baseDir: themeDirName,
       pageDataHub: pageDataHub
     });
+    const themeConfig = loadFile.json(themeConfigPath) || {};
+
     this.use(koaStatic(themeStaticDir));
-    this.router.get('/page/:pageId.html', async (ctx) => {
+    router.get('/page/:pageId.html', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.renderPage(pageId);
     });
-    this.router.get('/page/:pageId', async (ctx) => {
+    router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.renderPage(pageId);
     });
+
+    // console.log(this.router.routes().router.stack[0]);
+    // // init SPA router config
+    if (types.isJSON(themeConfig) === true && types.isJSON(themeConfig.spa) === true) {
+      const spaConfig = themeConfig.spa;
+      const { main = '' } = spaConfig;
+      this.use(async function (ctx, next) {
+        const urlPath = ctx.path || '';
+        if (/^\/(js|css|api|pic|static)\//.test(urlPath) !== true) {
+          const pageId = main.replace(/^\/page\//ig, '');
+          ctx.body = await theme.renderPage(pageId);
+        }
+      });
+    }
   }
 
   [INIT_API_ROUTER] () {

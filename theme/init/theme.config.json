@@ -1,6 +1,9 @@
 {
   "theme": "server-init",
-  "redirects" : {
-    "*" : "page/index"
+  "spa" : {
+    "main" : "/page/index",
+    "exclude": [
+      "/page/about"
+    ]
   }
 }
