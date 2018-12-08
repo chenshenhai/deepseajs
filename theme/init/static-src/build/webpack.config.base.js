@@ -10,7 +10,7 @@ const srcResolve = function (file) {
 };
 
 const distResolve = function (file) {
-  return path.join(__dirname, '..', '..', 'static', file);
+  return path.join(__dirname, '..', '..', file);
 };
 
 module.exports = {
@@ -19,7 +19,7 @@ module.exports = {
   },
   output: {
     path: distResolve(''),
-    filename: 'js/[name].js'
+    filename: 'static/js/[name].js'
   },
   module: {
     rules: [
@@ -53,7 +53,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
+      filename: 'static/css/[name].css'
     })
   ],
   optimization: {
