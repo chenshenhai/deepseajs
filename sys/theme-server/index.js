@@ -2,9 +2,9 @@ const path = require('path');
 const fs = require('fs');
 const Koa = require('koa');
 const KoaRouter = require('koa-router');
-const koaStatic = require('koa-static');
+const staticServe = require('./lib/static');
 const ThemeCore = require('../theme-core/index');
-const types = require('./lib/types');
+const types = require('./util/types');
 const loadFile = require('./util/load-file');
 
 const OPTIONS = Symbol('options');
@@ -64,13 +64,16 @@ class ThemeServer extends Koa {
     });
     const themeConfig = loadFile.json(themeConfigPath) || {};
 
-    this.use(koaStatic(themeStaticDir));
+    // init static
+    this.use(staticServe({ root: themeStaticDir }));
+
+    // init router
     router.get('/page/:pageId', async (ctx) => {
       const pageId = ctx.params.pageId;
       ctx.body = theme.renderPage(pageId);
     });
 
-    // // init SPA router config
+    // init SPA router config
     if (types.isJSON(themeConfig) === true && types.isJSON(themeConfig.spa) === true) {
       const spaConfig = themeConfig.spa;
       const { main = '', exclude } = spaConfig;

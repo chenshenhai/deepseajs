@@ -304,7 +304,7 @@ module.exports = {
     "no-useless-call": "error",
     "no-useless-computed-key": "error",
     "no-useless-constructor": "error",
-    "no-useless-escape": "error",
+    "no-useless-escape": 0,
     "no-useless-rename": "error",
     "no-useless-return": "error",
     "no-whitespace-before-property": "error",
