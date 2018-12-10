@@ -38,8 +38,7 @@ function AppLink ({ label, to, activeOnlyWhenExact }) {
 class AppRouter extends React.Component {
   render () {
     console.log('this.props = ', this.props);
-    const { todos = {} } = this.props;
-    const showCode = JSON.stringify(todos);
+
     return (
       <Router>
         <div>
@@ -64,7 +63,6 @@ class AppRouter extends React.Component {
               </Menu>
             </Header>
             <Content style={{ padding: '0 50px' }}>
-              <code>{showCode}</code>
               <Route path='/' exact component={ModIndex} />
               <Route path='/step' component={ModStepProcess} />
               <Route path='/info' component={ModInfo} />
@@ -80,7 +78,7 @@ class AppRouter extends React.Component {
 };
 
 const mapStateToProps = (state) => {
-  return { todos: state.todos };
+  return { todos: state.todos, language: state.language };
 };
 const App = connect(mapStateToProps)(AppRouter);
 
