@@ -8,7 +8,6 @@ import { Layout, Menu } from 'antd';
 
 import rootRoducers from './reducer/index';
 
-import ModStepProcess from './module/step-process.jsx';
 import ModIndex from './module/index.jsx';
 import ModInfo from './module/async-info.jsx';
 
@@ -52,19 +51,15 @@ class AppRouter extends React.Component {
                 style={{ height: '40px', lineHeight: '40px' }}
               >
                 <Menu.Item key="1">
-                  <AppLink activeOnlyWhenExact={true} to='/' label="Language" />
+                  <AppLink activeOnlyWhenExact={true} to='/' label="Index" />
                 </Menu.Item>
                 <Menu.Item key="2">
-                  <AppLink to='/step' label="StepProcess" />
-                </Menu.Item>
-                <Menu.Item key="3">
                   <AppLink to='/info' label="Info" />
                 </Menu.Item>
               </Menu>
             </Header>
             <Content style={{ padding: '0 50px' }}>
               <Route path='/' exact component={ModIndex} />
-              <Route path='/step' component={ModStepProcess} />
               <Route path='/info' component={ModInfo} />
             </Content>
             <Footer style={{ textAlign: 'center' }}>

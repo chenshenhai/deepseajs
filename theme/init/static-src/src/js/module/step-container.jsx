@@ -3,25 +3,24 @@ import { Steps, Button, message } from 'antd';
 
 const Step = Steps.Step;
 
-const steps = [{
-  title: 'Storage type',
-  content: 'Second-content'
-}, {
-  title: 'Super admin',
-  content: 'First-content'
-}, {
-  title: 'Server config',
-  content: 'Fourth-content'
-}, {
-  title: 'Start all server',
-  content: 'Last-content'
-}];
-
 class Module extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current: 0
+      current: 0,
+      stepList: [{
+        title: 'Storage type',
+        content: 'Second-content'
+      }, {
+        title: 'Super admin',
+        content: 'First-content'
+      }, {
+        title: 'Server config',
+        content: 'Fourth-content'
+      }, {
+        title: 'Start all server',
+        content: 'Last-content'
+      }]
     };
   }
 
@@ -36,20 +35,22 @@ class Module extends React.Component {
   }
 
   render () {
-    const { current } = this.state;
+    const { current, stepList } = this.state;
     return (
       <div className="page-app-container">
         <Steps current={current} >
-          {steps.map(item => <Step key={item.title} title={item.title} />)}
+          {stepList.map(item => <Step key={item.title} title={item.title} />)}
         </Steps>
-        <div className="app-main-content">{steps[current].content}</div>
+        <div className="app-main-content">
+          {stepList[current].content}
+        </div>
         <div className="app-main-action">
           {
-            current < steps.length - 1 &&
+            current < stepList.length - 1 &&
             <Button type="primary" onClick={() => this.next()}>Next</Button>
           }
           {
-            current === steps.length - 1 &&
+            current === stepList.length - 1 &&
             <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
           }
           {
