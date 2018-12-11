@@ -4,5 +4,8 @@ export default {
   STEP_LANGUAGE: '语言',
   STEP_SERVER_CONFIG: '服务配置',
   STEP_SUPER_ADMIN: '超级管理员',
-  STEP_START_SERVER: '开启服务'
+  STEP_START_SERVER: '开启服务',
+
+  BTN_NEXT: '下一步',
+  BTN_PREVIOUS: '上一步'
 };

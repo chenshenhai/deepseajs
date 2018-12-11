@@ -33,7 +33,7 @@ class Module extends React.Component {
           <FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.LABEL_SELECT_LANGUAGE}</span>} >
-            <Select defaultValue="zh-cn" style={{ width: 240 }} onChange={this.handleChange.bind(this)}>
+            <Select defaultValue="zh-cn" style={{ width: 320 }} onChange={this.handleChange.bind(this)}>
               <Option value="en">English</Option>
               <Option value="zh-cn">中文简体</Option>
             </Select>

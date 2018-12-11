@@ -4,5 +4,8 @@ export default {
   STEP_LANGUAGE: 'Language',
   STEP_SERVER_CONFIG: 'Server config',
   STEP_SUPER_ADMIN: 'Super admin',
-  STEP_START_SERVER: 'Start Server'
+  STEP_START_SERVER: 'Start Server',
+
+  BTN_NEXT: 'Next',
+  BTN_PREVIOUS: 'Previous'
 };

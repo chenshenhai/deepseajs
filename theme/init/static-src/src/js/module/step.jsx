@@ -50,20 +50,24 @@ class Module extends React.Component {
         </div>
         <div className="app-main-action">
           {
+            current > 0 &&
+            (
+              <Button style={{ marginRight: 8 }} onClick={() => this.prev()}>
+                {textMap.BTN_PREVIOUS}
+              </Button>
+            )
+          }
+          {
             current < stepList.length - 1 &&
-            <Button type="primary" onClick={() => this.next()}>Next</Button>
+            <Button type="primary" onClick={() => this.next()}>
+              {textMap.BTN_NEXT}
+            </Button>
           }
           {
             current === stepList.length - 1 &&
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>Done</Button>
-          }
-          {
-            current > 0 &&
-            (
-              <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
-              </Button>
-            )
+            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+              {textMap.BTN_NEXT}
+            </Button>
           }
         </div>
       </div>
