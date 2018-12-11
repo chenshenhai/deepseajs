@@ -1,6 +1,7 @@
 import React from 'react';
 import { Steps, Button, message } from 'antd';
 import StepLanguage from './step-language.jsx';
+import { connect } from 'react-redux';
 
 const Step = Steps.Step;
 
@@ -10,16 +11,16 @@ class Module extends React.Component {
     this.state = {
       current: 0,
       stepList: [{
-        title: 'Language',
+        key: 'STEP_LANGUAGE',
         content: <StepLanguage />
       }, {
-        title: 'Server config',
+        key: 'STEP_SERVER_CONFIG',
         content: 'Second-content'
       }, {
-        title: 'Super admin',
+        key: 'STEP_SUPER_ADMIN',
         content: 'First-content'
       }, {
-        title: 'Start all server',
+        key: 'STEP_START_SERVER',
         content: 'Last-content'
       }]
     };
@@ -37,10 +38,12 @@ class Module extends React.Component {
 
   render () {
     const { current, stepList } = this.state;
+    const { language = {} } = this.props;
+    const { textMap } = language;
     return (
       <div className="page-app-container">
         <Steps current={current} >
-          {stepList.map(item => <Step key={item.title} title={item.title} />)}
+          {stepList.map(item => <Step key={item.key} title={textMap[item.key]} />)}
         </Steps>
         <div className="app-main-content">
           {stepList[current].content}
@@ -68,4 +71,9 @@ class Module extends React.Component {
   }
 }
 
-export default Module;
+const mapStateToProps = (state) => {
+  return {
+    language: state.language
+  };
+};
+export default connect(mapStateToProps)(Module);
