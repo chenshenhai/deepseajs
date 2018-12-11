@@ -19,10 +19,10 @@ const formItemLayout = {
 class Module extends React.Component {
   handleChange (value) {
     const { dispatch } = this.props;
-    dispatch({
-      type: 'SELECT_LANGUAGE',
-      lang: value
-    });
+    // dispatch({
+    //   type: 'SELECT_LANGUAGE',
+    //   lang: value
+    // });
   }
   render () {
     const { language } = this.props;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Steps, Button, message } from 'antd';
 import StepLanguage from './step-language.jsx';
+import StepServerConfig from './step-server-config.jsx';
 import { connect } from 'react-redux';
 
 const Step = Steps.Step;
@@ -15,7 +16,7 @@ class Module extends React.Component {
         content: <StepLanguage />
       }, {
         key: 'STEP_SERVER_CONFIG',
-        content: 'Second-content'
+        content: <StepServerConfig />
       }, {
         key: 'STEP_SUPER_ADMIN',
         content: 'First-content'
