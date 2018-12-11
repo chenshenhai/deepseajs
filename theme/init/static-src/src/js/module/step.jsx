@@ -1,5 +1,6 @@
 import React from 'react';
 import { Steps, Button, message } from 'antd';
+import StepLanguage from './step-language.jsx';
 
 const Step = Steps.Step;
 
@@ -9,14 +10,14 @@ class Module extends React.Component {
     this.state = {
       current: 0,
       stepList: [{
-        title: 'Storage type',
+        title: 'Language',
+        content: <StepLanguage />
+      }, {
+        title: 'Server config',
         content: 'Second-content'
       }, {
         title: 'Super admin',
         content: 'First-content'
-      }, {
-        title: 'Server config',
-        content: 'Fourth-content'
       }, {
         title: 'Start all server',
         content: 'Last-content'

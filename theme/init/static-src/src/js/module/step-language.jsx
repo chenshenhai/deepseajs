@@ -28,19 +28,17 @@ class Module extends React.Component {
     const { language } = this.props;
     const { textMap } = language;
     return (
-      <div className="page-app-container">
-        <div className="app-main-content">
-          <Form style={{ width: '480px', margin: 'auto' }}>
-            <FormItem
-              {...formItemLayout}
-              label={<span style={{ lineHeight: '30px' }}>{textMap.LABEL_SELECT_LANGUAGE}</span>} >
-              <Select defaultValue="zh-cn" style={{ width: 240 }} onChange={this.handleChange.bind(this)}>
-                <Option value="en">English</Option>
-                <Option value="zh-cn">中文简体</Option>
-              </Select>
-            </FormItem>
-          </Form>
-        </div>
+      <div className="">
+        <Form style={{ width: '720', margin: 'auto' }}>
+          <FormItem
+            {...formItemLayout}
+            label={<span style={{ lineHeight: '30px' }}>{textMap.LABEL_SELECT_LANGUAGE}</span>} >
+            <Select defaultValue="zh-cn" style={{ width: 240 }} onChange={this.handleChange.bind(this)}>
+              <Option value="en">English</Option>
+              <Option value="zh-cn">中文简体</Option>
+            </Select>
+          </FormItem>
+        </Form>
       </div>
     );
   }
@@ -48,7 +46,6 @@ class Module extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos,
     language: state.language };
 };
 export default connect(mapStateToProps)(Module);
