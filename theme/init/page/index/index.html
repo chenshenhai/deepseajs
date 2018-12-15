@@ -37,6 +37,9 @@
     </style>
   </head>
   <body>
+    <div id="HiddenDataArea" style="display:none; width:0; height:0;">
+      <input type="hidden" name="fileStoragePath" value="{{config.fileStoragePath}}"/>
+    </div>
     <div id="PageApp">
       <div class="page-ready-main">
         <div class="page-loading-container">
@@ -44,7 +47,6 @@
         </div>
       </div> 
     </div>
-    
     <script src="/static/js/vendors.js"></script>
     <script src="/static/js/index.js"></script>
   </body>

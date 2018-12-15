@@ -27,6 +27,11 @@ const controller = {
       success: true,
       message: 'ok'
     };
+  },
+
+  async getFileStoragePath (ctx, next, opts = {}) {
+    const { baseDir } = opts;
+    const configPath = path.join(baseDir, '_file_storage_');
   }
 };
 

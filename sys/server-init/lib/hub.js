@@ -4,7 +4,7 @@ const posts = require('./api/posts');
 const user = require('./api/user');
 const storage = require('./api/storage');
 
-const page = require('./page');
+const PageData = require('./page/page-data');
 
 const apiMethodTypeList = ['get', 'post', 'delete', 'put', 'patch'];
 const OPTIONS = Symbol('options');
@@ -42,7 +42,7 @@ class Hub {
   constructor (opts = {}) {
     this[OPTIONS] = opts;
     this.apiHub = buildApiHub(opts);
-    this.pageDataHub = page;
+    this.pageDataHub = new PageData(opts);
   }
 }
 
