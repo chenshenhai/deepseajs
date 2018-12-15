@@ -58,6 +58,52 @@ class Module extends React.Component {
       dashboardPort: dashboardPort
     });
   }
+
+  onChangeMysqlLocalhost (e) {
+    const { dispatch } = this.props;
+    const mysqlLocalhost = e.target.value;
+    dispatch({
+      type: 'SET_MYSQL_CONFIG_LOCALHOST',
+      mysqlLocalhost: mysqlLocalhost
+    });
+  }
+
+  onChangeMysqlPort (e) {
+    const { dispatch } = this.props;
+    const mysqlPort = e.target.value;
+    dispatch({
+      type: 'SET_MYSQL_CONFIG_PORT',
+      mysqlPort: mysqlPort
+    });
+  }
+
+  onChangeMysqlUsername (e) {
+    const { dispatch } = this.props;
+    const mysqlUsername = e.target.value;
+    dispatch({
+      type: 'SET_MYSQL_CONFIG_USERNAME',
+      mysqlUsername: mysqlUsername
+    });
+  }
+
+  onChangeMysqlPassword (e) {
+    const { dispatch } = this.props;
+    const mysqlPassword = e.target.value;
+    dispatch({
+      type: 'SET_MYSQL_CONFIG_PASSWORD',
+      mysqlPassword: mysqlPassword
+    });
+  }
+
+  onChangeMysqlDatabase (e) {
+    const { dispatch } = this.props;
+    const mysqlDatabase = e.target.value;
+    dispatch({
+      type: 'SET_MYSQL_CONFIG_DATABASE',
+      mysqlDatabase: mysqlDatabase
+    });
+  }
+
   render () {
     const { language, serverConfig } = this.props;
     const { textMap } = language;
@@ -82,50 +128,55 @@ class Module extends React.Component {
             <Input placeholder="File storage path" value={fileStorageConfig.baseDir} disabled={true} />
           </FormItem>
           )}
-          {storageType !== 'fileStorage' &&
+          {storageType === 'mysql' &&
           (<FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_LOCALHOST}</span>} >
             <Input
               style={{ width: '160px' }}
               placeholder="MySQL localhost"
-              value={mysqlConfig.localhost} />
+              value={mysqlConfig.localhost}
+              onChange={this.onChangeMysqlLocalhost.bind(this)} />
           </FormItem>)}
-          {storageType !== 'fileStorage' &&
+          {storageType === 'mysql' &&
           (<FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_PORT}</span>} >
             <Input
               style={{ width: '160px' }}
               placeholder="MySQL port"
-              value={mysqlConfig.port} />
+              value={mysqlConfig.port}
+              onChange={this.onChangeMysqlPort.bind(this)} />
           </FormItem>)}
-          {storageType !== 'fileStorage' &&
+          {storageType === 'mysql' &&
           (<FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px', width: '120px' }}>{textMap.SERVER_CONFIG_MYSQL_USERNAME}</span>} >
             <Input
               style={{ width: '160px' }}
               placeholder="MySQL username"
-              value={mysqlConfig.username} />
+              value={mysqlConfig.username}
+              onChange={this.onChangeMysqlUsername.bind(this)} />
           </FormItem>)}
-          {storageType !== 'fileStorage' &&
+          {storageType === 'mysql' &&
           (<FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_PASSWORD}</span>} >
             <Input
               style={{ width: '200px' }}
               placeholder="MySQL password"
-              value={mysqlConfig.password}/>
+              value={mysqlConfig.password}
+              onChange={this.onChangeMysqlPassword.bind(this)}/>
           </FormItem>)}
-          {storageType !== 'fileStorage' &&
+          {storageType === 'mysql' &&
           (<FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_DATABASE}</span>} >
             <Input
               style={{ width: '200px' }}
               placeholder="MySQL database"
-              value={mysqlConfig.database} />
+              value={mysqlConfig.database}
+              onChange={this.onChangeMysqlDatabase.bind(this)} />
           </FormItem>)}
           <FormItem
             {...formItemLayout}

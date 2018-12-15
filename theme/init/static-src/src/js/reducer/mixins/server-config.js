@@ -54,19 +54,49 @@ function todos (state = defaultState, action) {
       };
     case SET_MYSQL_CONFIG_LOCALHOST:
       state.mysqlConfig.localhost = action.mysqlLocalhost;
-      return state;
+      const newConfigLocalhost = state.mysqlConfig;
+      return {
+        ...state,
+        ...{
+          mysqlConfig: newConfigLocalhost
+        }
+      };
     case SET_MYSQL_CONFIG_PORT:
       state.mysqlConfig.port = action.mysqlPort;
-      return state;
+      const newConfigPort = state.mysqlConfig;
+      return {
+        ...state,
+        ...{
+          mysqlConfig: newConfigPort
+        }
+      };
     case SET_MYSQL_CONFIG_USERNAME:
       state.mysqlConfig.username = action.mysqlUsername;
-      return state;
+      const newConfigUsername = state.mysqlConfig;
+      return {
+        ...state,
+        ...{
+          mysqlConfig: newConfigUsername
+        }
+      };
     case SET_MYSQL_CONFIG_PASSWORD:
       state.mysqlConfig.password = action.mysqlPassword;
-      return state;
+      const newConfigPassword = state.mysqlConfig;
+      return {
+        ...state,
+        ...{
+          mysqlConfig: newConfigPassword
+        }
+      };
     case SET_MYSQL_CONFIG_DATABASE:
       state.mysqlConfig.database = action.mysqlDatabase;
-      return state;
+      const newConfigDatabase = state.mysqlConfig;
+      return {
+        ...state,
+        ...{
+          mysqlConfig: newConfigDatabase
+        }
+      };
     case SET_SERVER_CONFIG_DASHBOARD_PORT:
       state.serverConfig.dashboard.port = action.dashboardPort;
       const newDashboardConfig = state.serverConfig;
