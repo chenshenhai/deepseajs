@@ -3,32 +3,30 @@ import {
   SET_FILE_STORAGE_CONFIG,
   SET_MYSQL_CONFIG,
   SET_SERVER_CONFIG
-} from '../action/todos';
+} from '../action/server-config';
 
-/*
-  {
-    storageType: '', // 'fileStorage' | 'MySQL'
-    fileStorageConfig: {
-      'baseDir': ''
+const defaultState = {
+  storageType: 'fileStorage', // 'fileStorage' | 'MySQL'
+  fileStorageConfig: {
+    'baseDir': ''
+  },
+  mysqlConfig: {
+    userName: '',
+    password: '',
+    port: '',
+    localhost: '127.0.0.1'
+  },
+  serverConfig: {
+    dashboard: {
+      port: '3001'
     },
-    mysqlConfig: {
-      userName: '',
-      password: '',
-      port: '',
-      localhost: ''
-    },
-    serverConfig: {
-      dashboard: {
-        port: '3001'
-      },
-      portal: {
-        port: '3002'
-      }
+    portal: {
+      port: '3000'
     }
   }
-*/
+};
 
-function todos (state = {}, action) {
+function todos (state = defaultState, action) {
   switch (action.type) {
     case SET_STORAGE_TYPE:
       return {

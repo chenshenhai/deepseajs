@@ -17,55 +17,55 @@ const formItemLayout = {
 };
 
 class Module extends React.Component {
-  handleChange (value) {
-    const { dispatch } = this.props;
-    // dispatch({
-    //   type: 'SELECT_LANGUAGE',
-    //   lang: value
-    // });
-  }
   render () {
-    const { language } = this.props;
-    const { textMap, lang } = language;
+    const { language, serverConfig } = this.props;
+    const { textMap } = language;
+    const { storageType } = serverConfig;
+    console.log('serverConfig = ', serverConfig);
     return (
       <div>
         <Form style={{ width: '720', margin: 'auto' }}>
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>Storage type</span>} >
-            <Radio.Group defaultValue="a" buttonStyle="solid">
-              <Radio.Button value="file">File storage</Radio.Button>
-              <Radio.Button value="mysql">MySQL</Radio.Button>
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_STORAGE_TYPE}</span>} >
+            <Radio.Group value={storageType} buttonStyle="solid">
+              <Radio.Button value="fileStorage">{textMap.SERVER_CONFIG_STORAGE_TYPE_FILE_STORAGE}</Radio.Button>
+              <Radio.Button value="mysql">{textMap.SERVER_CONFIG_STORAGE_TYPE_MYSQL}</Radio.Button>
             </Radio.Group>
           </FormItem>
-          <FormItem
+          {storageType === 'fileStorage' &&
+          (<FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>File storage path</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_FILE_STORAGE_PATH}</span>} >
             <Input placeholder="File storage path" />
           </FormItem>
-          <FormItem
+          )}
+          {storageType !== 'fileStorage' &&
+          (<FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>MySQL port</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_PORT}</span>} >
             <Input style={{ width: '160px' }} placeholder="MySQL port" />
-          </FormItem>
-          <FormItem
+          </FormItem>)}
+          {storageType !== 'fileStorage' &&
+          (<FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px', width: '120px' }}>MySQL username</span>} >
+            label={<span style={{ lineHeight: '30px', width: '120px' }}>{textMap.SERVER_CONFIG_MYSQL_USERNAME}</span>} >
             <Input style={{ width: '160px' }} placeholder="MySQL username" />
-          </FormItem>
-          <FormItem
+          </FormItem>)}
+          {storageType !== 'fileStorage' &&
+          (<FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>MySQL password</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_MYSQL_PASSWORD}</span>} >
             <Input style={{ width: '160px' }} placeholder="MySQL password" />
-          </FormItem>
+          </FormItem>)}
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>Dashboard server port</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_DASHBOARD_SERVER_PORT}</span>} >
             <Input style={{ width: '160px' }} placeholder="Dashboard server port" />
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>Portal server port</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SERVER_CONFIG_PORTAL_SERVER_PORT}</span>} >
             <Input style={{ width: '160px' }} placeholder="Portal server port" />
           </FormItem>
         </Form>
@@ -76,6 +76,8 @@ class Module extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    language: state.language };
+    language: state.language,
+    serverConfig: state.serverConfig
+  };
 };
 export default connect(mapStateToProps)(Module);

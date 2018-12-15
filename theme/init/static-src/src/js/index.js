@@ -36,8 +36,6 @@ function AppLink ({ label, to, activeOnlyWhenExact }) {
 
 class AppRouter extends React.Component {
   render () {
-    console.log('this.props = ', this.props);
-
     return (
       <Router>
         <div>

@@ -10,7 +10,7 @@ class Module extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current: 0,
+      current: 1,
       stepList: [{
         key: 'STEP_LANGUAGE',
         content: <StepLanguage />
@@ -78,7 +78,8 @@ class Module extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    language: state.language
+    language: state.language,
+    serverConfig: state.serverConfig
   };
 };
 export default connect(mapStateToProps)(Module);
