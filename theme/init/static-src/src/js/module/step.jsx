@@ -1,8 +1,10 @@
 import React from 'react';
 import { Steps, Button, message } from 'antd';
+import { connect } from 'react-redux';
 import StepLanguage from './step-language.jsx';
 import StepServerConfig from './step-server-config.jsx';
-import { connect } from 'react-redux';
+import StepSuperAdmin from './step-super-admin.jsx';
+import StepStartServer from './step-start-server.jsx';
 
 const Step = Steps.Step;
 
@@ -10,7 +12,7 @@ class Module extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current: 1,
+      current: 3,
       stepList: [{
         key: 'STEP_LANGUAGE',
         content: <StepLanguage />
@@ -19,10 +21,10 @@ class Module extends React.Component {
         content: <StepServerConfig />
       }, {
         key: 'STEP_SUPER_ADMIN',
-        content: 'First-content'
+        content: <StepSuperAdmin />
       }, {
         key: 'STEP_START_SERVER',
-        content: 'Last-content'
+        content: <StepStartServer />
       }]
     };
   }
@@ -67,7 +69,7 @@ class Module extends React.Component {
           {
             current === stepList.length - 1 &&
             <Button type="primary" onClick={() => message.success('Processing complete!')}>
-              {textMap.BTN_NEXT}
+              {textMap.BTN_GO}
             </Button>
           }
         </div>

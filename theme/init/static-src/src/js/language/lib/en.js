@@ -19,5 +19,6 @@ export default {
   SERVER_CONFIG_PORTAL_SERVER_PORT: 'Portal server port',
 
   BTN_NEXT: 'Next',
-  BTN_PREVIOUS: 'Previous'
+  BTN_PREVIOUS: 'Previous',
+  BTN_GO: 'Run Server'
 };

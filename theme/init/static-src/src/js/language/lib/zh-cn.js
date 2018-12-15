@@ -19,5 +19,6 @@ export default {
   SERVER_CONFIG_PORTAL_SERVER_PORT: '门户服务端口',
 
   BTN_NEXT: '下一步',
-  BTN_PREVIOUS: '上一步'
+  BTN_PREVIOUS: '上一步',
+  BTN_GO: '去启动服务'
 };
