@@ -13,7 +13,7 @@ function buildApiHub (opts) {
   let apiMap = {
     posts,
     user,
-    storage: storage(opts)
+    storage
   };
   let apiHub = {};
   if (types.isJSON(apiMap) === true) {

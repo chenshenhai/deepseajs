@@ -14,12 +14,12 @@ function getFileStore (opts) {
 }
 
 const controller = {
-  async init (ctx, next, opts = {}) {
-    const { baseDir } = opts;
-    const fileStore = getFileStore(opts);
-    const configPath = path.join(baseDir, '_file_storage_', 'config', 'config.json');
-    const dataUserPath = path.join(baseDir, '_file_storage_', 'data', 'user', 'a0000001.json');
-    const dataPostsPath = path.join(baseDir, '_file_storage_', 'data', 'posts', 'a', 'a0000001.json');
+  async init (ctx, next) {
+    const { baseDir } = ctx.query;
+    const fileStore = getFileStore({ baseDir });
+    const configPath = path.join(baseDir, 'config', 'config.json');
+    const dataUserPath = path.join(baseDir, 'data', 'user', 'a0000001.json');
+    const dataPostsPath = path.join(baseDir, 'data', 'posts', 'a', 'a0000001.json');
     await fileStore.createFile(configPath, '{}');
     await fileStore.createFile(dataUserPath, '{}');
     await fileStore.createFile(dataPostsPath, '{}');
@@ -27,11 +27,7 @@ const controller = {
       success: true,
       message: 'ok'
     };
-  },
-
-  async getFileStoragePath (ctx, next, opts = {}) {
-    const { baseDir } = opts;
-    const configPath = path.join(baseDir, '_file_storage_');
+    // await next();
   }
 };
 

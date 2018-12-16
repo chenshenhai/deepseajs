@@ -22,15 +22,7 @@ class Module extends React.Component {
     const { textMap, lang } = language;
     return (
       <div>
-        <Form style={{ width: '720', margin: 'auto' }}>
-          <FormItem
-            {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>{'info'}</span>} >
-            <Input
-              style={{ width: '240px' }}
-              placeholder="info" />
-          </FormItem>
-        </Form>
+        <p style={{ textAlign: 'center' }}>init server</p>
       </div>
     );
   }

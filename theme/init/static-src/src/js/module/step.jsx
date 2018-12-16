@@ -12,7 +12,7 @@ class Module extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current: 2,
+      current: 3,
       stepList: [{
         key: 'STEP_LANGUAGE',
         content: <StepLanguage />
@@ -37,6 +37,15 @@ class Module extends React.Component {
   prev () {
     const current = this.state.current - 1;
     this.setState({ current });
+  }
+
+  initServer () {
+    const { serverConfig, superAdmin } = this.props;
+    const serverData = {
+      serverConfig,
+      superAdmin
+    };
+    console.log('serverData = ', serverData);
   }
 
   render () {
@@ -68,7 +77,7 @@ class Module extends React.Component {
           }
           {
             current === stepList.length - 1 &&
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+            <Button type="primary" onClick={this.initServer.bind(this)}>
               {textMap.BTN_GO}
             </Button>
           }
@@ -81,7 +90,8 @@ class Module extends React.Component {
 const mapStateToProps = (state) => {
   return {
     language: state.language,
-    serverConfig: state.serverConfig
+    serverConfig: state.serverConfig,
+    superAdmin: state.superAdmin
   };
 };
 export default connect(mapStateToProps)(Module);
