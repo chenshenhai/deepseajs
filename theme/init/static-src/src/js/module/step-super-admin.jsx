@@ -25,21 +25,21 @@ class Module extends React.Component {
         <Form style={{ width: '720', margin: 'auto' }}>
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>{'username'}</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_USERNAME}</span>} >
             <Input
               style={{ width: '240px' }}
               placeholder="username"/>
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>{'password'}</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_PASSWORD}</span>} >
             <Input
               style={{ width: '240px' }}
               placeholder="password"/>
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label={<span style={{ lineHeight: '30px' }}>{'confirm password'}</span>} >
+            label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_CONFIRM_PASSWORD}</span>} >
             <Input
               style={{ width: '240px' }}
               placeholder="confirm password"/>
@@ -52,6 +52,8 @@ class Module extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    language: state.language };
+    language: state.language,
+    superAdmin: state.superAdmin
+  };
 };
 export default connect(mapStateToProps)(Module);

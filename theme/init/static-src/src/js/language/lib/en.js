@@ -18,6 +18,10 @@ export default {
   SERVER_CONFIG_DASHBOARD_SERVER_PORT: 'Dashboard server port',
   SERVER_CONFIG_PORTAL_SERVER_PORT: 'Portal server port',
 
+  SUPER_ADMIN_USERNAME: 'Admin username',
+  SUPER_ADMIN_PASSWORD: 'Admin password',
+  SUPER_ADMIN_CONFIRM_PASSWORD: 'Confirm password',
+
   BTN_NEXT: 'Next',
   BTN_PREVIOUS: 'Previous',
   BTN_GO: 'Run Server'

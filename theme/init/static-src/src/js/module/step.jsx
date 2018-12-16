@@ -12,7 +12,7 @@ class Module extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      current: 3,
+      current: 0,
       stepList: [{
         key: 'STEP_LANGUAGE',
         content: <StepLanguage />
