@@ -17,8 +17,35 @@ const formItemLayout = {
 };
 
 class Module extends React.Component {
+  onChangeUsername (e) {
+    const { dispatch } = this.props;
+    const username = e.target.value;
+    dispatch({
+      type: 'SET_ADMIN_USERNAME',
+      username: username
+    });
+  }
+
+  onChangePassword (e) {
+    const { dispatch } = this.props;
+    const password = e.target.value;
+    dispatch({
+      type: 'SET_ADMIN_PASSWORD',
+      password: password
+    });
+  }
+
+  onChangeConfirmPassword (e) {
+    const { dispatch } = this.props;
+    const confirmPassword = e.target.value;
+    dispatch({
+      type: 'SET_ADMIN_CONFIRM_PASSWORD',
+      confirmPassword: confirmPassword
+    });
+  }
+
   render () {
-    const { language } = this.props;
+    const { language, superAdmin } = this.props;
     const { textMap, lang } = language;
     return (
       <div>
@@ -28,21 +55,29 @@ class Module extends React.Component {
             label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_USERNAME}</span>} >
             <Input
               style={{ width: '240px' }}
-              placeholder="username"/>
+              value={superAdmin.username}
+              placeholder="username"
+              onChange={this.onChangeUsername.bind(this)} />
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_PASSWORD}</span>} >
             <Input
               style={{ width: '240px' }}
-              placeholder="password"/>
+              type="password"
+              value={superAdmin.password}
+              placeholder="password"
+              onChange={this.onChangePassword.bind(this)} />
           </FormItem>
           <FormItem
             {...formItemLayout}
             label={<span style={{ lineHeight: '30px' }}>{textMap.SUPER_ADMIN_CONFIRM_PASSWORD}</span>} >
             <Input
               style={{ width: '240px' }}
-              placeholder="confirm password"/>
+              type="password"
+              value={superAdmin.confirmPassword}
+              placeholder="confirm password"
+              onChange={this.onChangeConfirmPassword.bind(this)} />
           </FormItem>
         </Form>
       </div>

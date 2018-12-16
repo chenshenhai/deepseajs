@@ -10,7 +10,7 @@ function todos (state = {}, action) {
       return {
         ...state,
         ...{
-          password: action.username
+          username: action.username
         }
       };
     case SET_ADMIN_PASSWORD:
